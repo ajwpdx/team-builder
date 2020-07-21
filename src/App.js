@@ -5,13 +5,26 @@ import './App.css';
 
 const teamList = [
   {
-  username: 'ajwpdx',
+  name: 'Alex Williams',
   email: 'alexjwilliams1@gmail.com',
   role: 'front end developer'
-}]
+  },
+  {
+   name: 'Tony Hawk',
+   email: 'tony@hawk.com',
+   role: 'back end developer'
+
+  },
+  {
+    name: 'Shawn White',
+    email: 'tomato@swhite.com',
+    role: 'UI designer'
+  }
+
+]
 
 const initialFormValues = {
-  username: '',
+  name: '',
   email: '',
   role: '',
 }
@@ -33,7 +46,7 @@ function App() {
 
   const submitForm = () => {
     const newTeamMember = {
-      username: formValues.username.trim(),
+      username: formValues.name.trim(),
       email: formValues.email.trim(),
       role: formValues.role,
     }
@@ -41,8 +54,20 @@ function App() {
   }
   return (
     <div className="App">
-      <TeamMember/>
-      <Form/>
+
+{teamList.map(member => {
+    console.log(member)
+      return (
+       <TeamMember key={member.email} details={member} />
+          )
+        })
+      }
+      <Form
+      values = {formValues}
+      update = {updateForm}
+      submit = {submitForm}
+
+      />
     </div>
   );
 }
